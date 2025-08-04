@@ -4,47 +4,116 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Since We Met</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #b2f0f5, #e0ffff);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
+ <style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #b2f0f5, #e0ffff);
+    overflow: hidden;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in;
+  }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #e91e63;
-      margin-bottom: 1rem;
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    .timer {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
-    }
+  h1 {
+    font-size: 2.8rem;
+    color: #e91e63;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  }
 
-    a {
-      margin-top: 2rem;
-      text-decoration: none;
-      font-size: 1rem;
-      color: #fff;
-      background-color: #ff69b4;
-      padding: 10px 20px;
-      border-radius: 10px;
+  .timer {
+    font-size: 1.5rem;
+    margin: 0 auto 2rem;
+    color: #444;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .heart-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff69b4;
+    transform: rotate(45deg);
+    animation: float 8s linear infinite;
+  }
+
+  .heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ff69b4;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: -10px;
+    top: 0;
+  }
+
+  @keyframes float {
+    0% {
+      top: 100%;
+      opacity: 0;
     }
-  </style>
+    25% {
+      opacity: 1;
+    }
+    100% {
+      top: -10%;
+      left: calc(100% * var(--i));
+      opacity: 0;
+    }
+  }
+
+  a.button {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #ff69b4;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  a.button:hover {
+    background-color: #ff458c;
+  }
+</style>
+
 </head>
-<body>
+ <div class="heart-bg">
+    <div class="heart" style="--i: 0.1;"></div>
+    <div class="heart" style="--i: 0.3;"></div>
+    <div class="heart" style="--i: 0.5;"></div>
+    <div class="heart" style="--i: 0.7;"></div>
+    <div class="heart" style="--i: 0.9;"></div>
+  </div>
+
   <h1>Since We Met 💞</h1>
   <div class="timer" id="sinceTime">Loading...</div>
 
-  <a href="index.html">← Back to Love Letter</a>
+  <a href="index.html" class="button">← Back to Love Letter</a>
 
 <script>
   const startDate = new Date("2025-01-25T00:00:00");
