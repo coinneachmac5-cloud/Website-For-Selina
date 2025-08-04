@@ -46,7 +46,7 @@
 
   <a href="index.html">← Back to Love Letter</a>
 
- <script>
+<script>
   const startDate = new Date("2025-01-25T00:00:00");
 
   function updateTimer() {
@@ -73,13 +73,18 @@
       days--;
     }
 
-    const text = `${months + years * 12} month${months + years * 12 !== 1 ? 's' : ''}, ${days} day${days !== 1 ? 's' : ''} and ${hours} hour${hours !== 1 ? 's' : ''} since January 25, 2025.`;
+    const totalMonths = months + years * 12;
 
+    const text = `${totalMonths} month${totalMonths !== 1 ? 's' : ''}, ${days} day${days !== 1 ? 's' : ''} and ${hours} hour${hours !== 1 ? 's' : ''} since January 25, 2025.`;
+
+    // ✅ This is what was missing:
     document.getElementById("sinceTime").textContent = text;
   }
 
   updateTimer();
-  setInte
+  setInterval(updateTimer, 1000 * 60 * 5);
+</script>
+
 
 </body>
 </html>
