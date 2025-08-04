@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Since We Met</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #b2f0f5, #e0ffff);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #e91e63;
+      margin-bottom: 1rem;
+    }
+
+    .timer {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    a {
+      margin-top: 2rem;
+      text-decoration: none;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #ff69b4;
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Since We Met 💞</h1>
+  <div class="timer" id="sinceTime">Loading...</div>
+
+  <a href="index.html">← Back to Love Letter</a>
+
+  <script>
+    const startDate = new Date("2025-01-25T00:00:00");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+
+      document.getElementById("sinceTime").textContent =
+        `${days} day${days !== 1 ? 's' : ''} and ${hours} hour${hours !== 1 ? 's' : ''} since January 25, 2025.`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000 * 60 * 5); // update every 5 minutes
+  </script>
+</body>
+</html>
