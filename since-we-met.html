@@ -46,22 +46,40 @@
 
   <a href="index.html">← Back to Love Letter</a>
 
-  <script>
-    const startDate = new Date("2025-01-25T00:00:00");
+ <script>
+  const startDate = new Date("2025-01-25T00:00:00");
 
-    function updateTimer() {
-      const now = new Date();
-      const diff = now - startDate;
+  function updateTimer() {
+    const now = new Date();
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    let days = now.getDate() - startDate.getDate();
+    let hours = now.getHours() - startDate.getHours();
 
-      document.getElementById("sinceTime").textContent =
-        `${days} day${days !== 1 ? 's' : ''} and ${hours} hour${hours !== 1 ? 's' : ''} since January 25, 2025.`;
+    if (days < 0) {
+      months--;
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
     }
 
-    updateTimer();
-    setInterval(updateTimer, 1000 * 60 * 5); // update every 5 minutes
-  </script>
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    if (hours < 0) {
+      hours += 24;
+      days--;
+    }
+
+    const text = `${months + years * 12} month${months + years * 12 !== 1 ? 's' : ''}, ${days} day${days !== 1 ? 's' : ''} and ${hours} hour${hours !== 1 ? 's' : ''} since January 25, 2025.`;
+
+    document.getElementById("sinceTime").textContent = text;
+  }
+
+  updateTimer();
+  setInte
+
 </body>
 </html>
