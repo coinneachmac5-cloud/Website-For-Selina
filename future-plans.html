@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Our Future Plans (Shared)</title>
+<style>
+  :root { --pink:#ff69b4; --bg1:#b2f0f5; --bg2:#e0ffff; }
+  body{
+    margin:0; font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+    background:linear-gradient(to bottom right,var(--bg1),var(--bg2));
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:40px 16px; text-align:center;
+  }
+  h1{ color:#e91e63; margin:0 0 10px; font-size:2.2rem; }
+  .wrap{ width:100%; max-width:740px; }
+  form{ display:flex; gap:10px; margin:16px 0 22px; }
+  input{ flex:1; padding:12px 14px; border-radius:10px; border:1px solid #ddd; background:#fff; }
+  button{
+    background:var(--pink); color:#fff; border:none; padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:600;
+  }
+  ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+  li{
+    background:#ffffffcc; backdrop-filter: blur(3px);
+    border:1px solid #f7c6de; border-radius:14px; padding:12px 14px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .left{ display:flex; align-items:center; gap:10px; text-align:left; }
+  .title.done{ text-decoration:line-through; color:#888; }
+  a.button-link{ display:inline-block; margin-top:22px; text-decoration:none; background:var(--pink); color:#fff; padding:10px 16px; border-radius:10px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Our Future Plans 💫</h1>
+
+    <form id="addForm">
+      <input id="ideaInput" type="text" placeholder="Add a new idea (e.g., Hug under a tree)" required />
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="plansList"><li style="justify-content:center;">Loading…</li></ul>
+
+    <a href="index.html" class="button-link">← Back to Home</a>
+  </div>
+
+<script>
+  const API = 'https://script.google.com/macros/s/AKfycbzOOGZOZZzujmPy0UfP6RXkU6mSqdi2c9oerx4dzHNwU9G6wbg5oXFGDkmt9jbUGTnMVQ/exec';
+
+  const listEl = document.getElementById('plansList');
+  const form = document.getElementById('addForm');
+  const input = document.getElementById('ideaInput');
+
+  async function fetchPlans(){
+    const res = await fetch(API, { method:'GET' });
+    const data = await res.json();
+    render(data.items || []);
+  }
+
+  function render(items){
+    listEl.innerHTML = '';
+    if (!items.length){
+      listEl.innerHTML = `<li style="justify-content:center;">No plans yet. Add the first one! ✨</li>`;
+      return;
+    }
+    items.forEach(it => {
+      const li = document.createElement('li');
+
+      const left = document.createElement('div');
+      left.className = 'left';
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = !!it.done;
+      cb.onchange = () => toggleItem(it.id, cb.checked);
+
+      const title = document.createElement('div');
+      title.className = 'title' + (it.done ? ' done' : '');
+      title.textContent = it.idea;
+
+      left.appendChild(cb);
+      left.appendChild(title);
+
+      const del = document.createElement('button');
+      del.textContent = 'Delete';
+      del.onclick = () => deleteItem(it.id);
+
+      li.appendChild(left);
+      li.appendChild(del);
+      listEl.appendChild(li);
+    });
+  }
+
+  async function addItem(idea){
+    await fetch(API, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ action:'add', idea })
+    });
+    await fetchPlans();
+  }
+  async function toggleItem(id, done){
+    await fetch(API, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ action:'toggle', id, done })
+    });
+    await fetchPlans();
+  }
+  async function deleteItem(id){
+    await fetch(API, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ action:'delete', id })
+    });
+    await fetchPlans();
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const val = input.value.trim();
+    if (!val) return;
+    input.value = '';
+    await addItem(val);
+  });
+
+  fetchPlans();
+</script>
+</body>
+</html>
