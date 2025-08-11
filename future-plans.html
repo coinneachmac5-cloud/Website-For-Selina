@@ -48,13 +48,19 @@
   const API = 'https://script.google.com/macros/s/AKfycbzOOGZOZZzujmPy0UfP6RXkU6mSqdi2c9oerx4dzHNwU9G6wbg5oXFGDkmt9jbUGTnMVQ/exec';
 
   const listEl = document.getElementById('plansList');
-  const form = document.getElementById('addForm');
-  const input = document.getElementById('ideaInput');
+  const form   = document.getElementById('addForm');
+  const input  = document.getElementById('ideaInput');
 
   async function fetchPlans(){
-    const res = await fetch(API, { method:'GET' });
-    const data = await res.json();
-    render(data.items || []);
+    try {
+      const res  = await fetch(API, { method:'GET' });
+      const data = await res.json();
+      if (!data || data.error) throw new Error(data?.error || 'Server error');
+      render(data.items || []);
+    } catch (err) {
+      listEl.innerHTML = `<li style="justify-content:center;color:#c2185b;">Error: ${err.message}</li>`;
+      console.error('fetchPlans error:', err);
+    }
   }
 
   function render(items){
@@ -91,28 +97,34 @@
     });
   }
 
+  // Use text/plain to avoid preflight
   async function addItem(idea){
+    const body = JSON.stringify({ action:'add', idea });
     await fetch(API, {
       method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify({ action:'add', idea })
-    });
+      headers: { 'Content-Type':'text/plain;charset=utf-8' },
+      body
+    }).then(r => r.json()).catch(()=> ({}));
     await fetchPlans();
   }
+
   async function toggleItem(id, done){
+    const body = JSON.stringify({ action:'toggle', id, done });
     await fetch(API, {
       method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify({ action:'toggle', id, done })
-    });
+      headers: { 'Content-Type':'text/plain;charset=utf-8' },
+      body
+    }).then(r => r.json()).catch(()=> ({}));
     await fetchPlans();
   }
+
   async function deleteItem(id){
+    const body = JSON.stringify({ action:'delete', id });
     await fetch(API, {
       method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify({ action:'delete', id })
-    });
+      headers: { 'Content-Type':'text/plain;charset=utf-8' },
+      body
+    }).then(r => r.json()).catch(()=> ({}));
     await fetchPlans();
   }
 
@@ -123,6 +135,10 @@
     input.value = '';
     await addItem(val);
   });
+
+  fetchPlans();
+</script>
+
 
   fetchPlans();
 </script>
