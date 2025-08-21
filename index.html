@@ -61,8 +61,8 @@
       animation: fall 6s linear infinite;
     }
 
-    .menu-btn {
-  text-decoration: none;
+.menu-btn {
+  text-decoration: none;  /* removes underline */
   padding: 12px 24px;
   font-size: 1rem;
   border-radius: 12px;
@@ -71,9 +71,15 @@
   border: none;
   cursor: pointer;
   display: block;
-  width: 250px;       /* keeps them the same size */
-  margin: 10px auto;  /* even spacing between all buttons */
+  width: 250px;  /* keeps them the same size */
+  margin: 10px auto; /* even spacing between all buttons */
+  text-align: center; /* keeps text centered */
 }
+
+.menu-btn:hover {
+  background-color: #ff85c1; /* optional hover effect */
+}
+
 
 
     .heart::before, .heart::after {
@@ -127,31 +133,13 @@
   <h1>For Selina 💕</h1>
   <p>I love you with all my heart. Everything you do for me is all I could ask for, and I couldn’t ask for more perfect gf. I love you to the moon and back sweetpea <3.</p>
 
-<a href="since-we-met.html">
-  <button class="menu-btn">Since We Met ❤️</button>
-</a>
+<a href="since-we-met.html" class="menu-btn">Since We Met ❤️</a>
+<a href="facts-about-my-baby.html" class="menu-btn">Facts About My Baby ❤️</a>
+<a href="roblox-memory-gallery.html" class="menu-btn">Roblox Memories ❤️</a>
+<a href="future-plans.html" class="menu-btn">Our Future Plans (Shared) ✍️</a>
+<a href="imperfect-but-perfect.html" class="menu-btn">Imperfect But Perfect ❤️</a>
+<a href="letters.html" class="menu-btn">Letters for Every Mood 📩</a>
 
-<a href="facts-about-my-baby.html">
-  <button class="menu-btn">Facts About My Baby ❤️</button>
-</a>
-
-<a href="roblox-memory-gallery.html">
-  <button class="menu-btn">Roblox Memories ❤️</button>
-</a>
-
-<a href="future-plans.html">
-  <button class="menu-btn">Our Future Plans (Shared) ✍️</button>
-</a>
-
-<a href="imperfect-but-perfect.html">
-  <button class="menu-btn">Imperfect But Perfect ❤️</button>
-</a>
-
-<a href="letters.html">
-  <button class="menu-btn">Letters for Every Mood 📩</button>
-</a>
-
-  
   <footer>Made with love ❤️</footer>
 </body>
 </html>
