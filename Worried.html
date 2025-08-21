@@ -22,6 +22,30 @@
 </style>
 </head>
 <body>
+  
+  <div style="text-align:center; margin-top:20px;">
+  <audio id="bg-music" loop>
+    <source src="je-te-laisserai-des-mots.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Play Button -->
+  <button onclick="document.getElementById('bg-music').play()" 
+    style="margin:10px; padding:12px 20px; border:none; border-radius:50px; 
+           background:#ff4da6; color:white; font-size:16px; font-weight:bold; 
+           cursor:pointer; box-shadow:0 0 12px #ff99cc;">
+    💖 Play Song 💖
+  </button>
+
+  <!-- Pause Button -->
+  <button onclick="document.getElementById('bg-music').pause()" 
+    style="margin:10px; padding:12px 20px; border:none; border-radius:50px; 
+           background:#999; color:white; font-size:16px; font-weight:bold; 
+           cursor:pointer; box-shadow:0 0 12px #ccc;">
+    ⏸ Pause
+  </button>
+</div>
+  
   <div class="card">
     <h1><span class="emoji">💌</span> A Letter for You</h1>
     <p>Dear Selina,</p>
