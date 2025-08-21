@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Letters for Every Mood</title>
+<style>
+  :root { --pink:#ff69b4; --bg1:#b2f0f5; --bg2:#e0ffff; }
+  body{
+    margin:0; font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+    background:linear-gradient(to bottom right,var(--bg1),var(--bg2));
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:40px 16px;
+  }
+  h1{ color:#e91e63; margin:0 0 10px; font-size:2.2rem; text-align:center; }
+  p.sub{ color:#444; margin:0 0 24px; text-align:center; }
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px; width:100%; max-width:900px;
+  }
+  a.card{
+    text-decoration:none; color:#333; background:#ffffffcc; backdrop-filter:blur(3px);
+    border:1px solid #f7c6de; border-radius:14px; padding:16px;
+    display:flex; align-items:center; gap:10px; transition:transform .1s ease, box-shadow .1s ease;
+  }
+  a.card:hover{ transform:translateY(-2px); box-shadow:0 10px 20px rgba(255,105,180,.15); }
+  .emoji{ font-size:1.3rem; }
+  .back{ margin-top:22px; text-decoration:none; background:var(--pink); color:#fff; padding:10px 16px; border-radius:10px;}
+</style>
+</head>
+<body>
+  <h1>Letters for Every Mood 💌</h1>
+  <p class="sub">Tap a card whenever you want a little letter from me.</p>
+
+  <div class="grid">
+    <a class="card" href="letter-happy.html"><span class="emoji">😊</span> <b>When you’re Happy</b></a>
+    <a class="card" href="letter-sad.html"><span class="emoji">🥺</span> <b>When you’re Sad</b></a>
+    <a class="card" href="letter-anxious.html"><span class="emoji">🌧️</span> <b>When you’re Stressed/Anxious</b></a>
+    <a class="card" href="letter-proud.html"><span class="emoji">🌟</span> <b>When I’m Proud of You</b></a>
+    <a class="card" href="letter-missing.html"><span class="emoji">💭</span> <b>When I Miss You</b></a>
+    <a class="card" href="letter-apology.html"><span class="emoji">🫶</span> <b>When I’m Sorry</b></a>
+  </div>
+
+  <a class="back" href="index.html">← Back to Home</a>
+</body>
+</html>
 
