@@ -24,18 +24,24 @@
 <body>
   
 <div style="text-align:center; margin-top:20px;">
-  <audio id="bgMusic" preload="auto" src="je-te-laisserai-des-mots.mp3" controls></audio>
+  <audio id="bgMusic" preload="auto">
+    <source src="assets/audio/je-te-laisserai-des-mots-v2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-  <button onclick="document.getElementById('bgMusic').play()"
+  <!-- Play Button -->
+  <button onclick="document.getElementById('bgMusic').play()" 
           style="padding:10px 20px; margin:5px; border:none; border-radius:20px; background:#ff69b4; color:#fff;">
     💖 Play Song 💖
   </button>
 
-  <button onclick="document.getElementById('bgMusic').pause()"
+  <!-- Pause Button -->
+  <button onclick="document.getElementById('bgMusic').pause()" 
           style="padding:10px 20px; margin:5px; border:none; border-radius:20px; background:#999; color:#fff;">
     ⏸ Pause
   </button>
 </div>
+
 
   
   <div class="card">
