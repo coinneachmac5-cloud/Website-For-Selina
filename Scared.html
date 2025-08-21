@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Scared</title>
+<style>
+  :root { --pink:#ff69b4; --bg1:#b2f0f5; --bg2:#e0ffff; }
+  body{ margin:0; font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+        background:linear-gradient(to bottom right,var(--bg1),var(--bg2));
+        min-height:100vh; display:flex; justify-content:center; align-items:center; padding:24px; }
+  .card{
+    max-width:760px; width:100%; background:#ffffffcc; backdrop-filter:blur(3px);
+    border:1px solid #f7c6de; border-radius:16px; padding:24px; box-shadow:0 10px 24px rgba(255,105,180,.15);
+  }
+  h1{ margin:0 0 8px; color:#e91e63; }
+  .emoji{ font-size:1.5rem; }
+  p{ line-height:1.7; color:#333; }
+  .sig{ margin-top:18px; color:#e91e63; font-weight:600; }
+  .back{ display:inline-block; margin-top:18px; text-decoration:none; background:var(--pink); color:#fff; padding:10px 16px; border-radius:10px;}
+</style>
+</head>
+<body>
+  
+<div style="text-align:center; margin-top:20px;">
+<audio id="bgMusic" preload="auto">
+  <source src="assets/audio/Lord.Huron-The.Night.We.Met.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="document.getElementById('bgMusic').play()"
+  style="padding:10px 20px; margin:5px; border:none; border-radius:20px; background:#ff69b4; color:#fff;">
+  💖 Play Song 💖
+</button>
+
+<button onclick="document.getElementById('bgMusic').pause()"
+  style="padding:10px 20px; margin:5px; border:none; border-radius:20px; background:#999; color:#fff;">
+  ⏸ Pause
+</button>
+
+</div>
+
+
+  
+  <div class="card">
+    <h1><span class="emoji">💌</span> A Letter for You</h1>
+    <p>Dear Selina,</p>
+    <p>
+
+
+      
+    </p>
+    <p class="sig">Forever yours, <br/>— Connie</p>
+    <a class="back" href="letters.html">← Back to Letters</a>
+  </div>
+</body>
+</html>
